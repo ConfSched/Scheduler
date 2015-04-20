@@ -1,0 +1,25 @@
+#ifndef INCLUDED_sqlHelpers
+#define INCLUDED_sqlHepers
+
+#define serverAddress "localhost"
+#define username "cjdresearch"
+#define password "s3nrs@ch!"
+#define dbName "confsched"
+
+
+// SQL Helper Functions
+
+//Pre:  *con contains an error message
+//Post:  The error message has been sent to the console
+void dispSqlError(MYSQL *con);
+
+//Pre:
+//Post:  returns the number of rows in the specified table
+int getRows (MYSQL *myCon, const char* tableName);
+
+//Pre:  myCon is a MYSQL objec
+//Post:  myCon is a valid connection to the database or an appropriate
+//      error has been displayed
+void connectDB (MYSQL *myCon, bool errorStatus);
+
+#endif
