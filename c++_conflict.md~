@@ -1,4 +1,0 @@
-bool conflict(session add_session, paper add_paper) {
-     session[] current_sessions = add_session.getCurrentSession();
-     
-}    
