@@ -62,10 +62,6 @@ void printPerm(int num_sessions, session sessions[], int num_authors, author aut
 	}
       }
       cout << endl;
-  //TODO: set bar for max amount of conflicts
-  //TODO: save permutations below that bar.
-
-  //TODO: send array back to caleb for permutations and number of conflicts
   }
   cout << "Conflicts for this permutation: " << conflicts << endl;
   cout << endl;
@@ -156,14 +152,4 @@ int main() {
   clearTables();
   permute(1,num_sessions,sessions,num_authors,authors);
   printf("\n");
-
-/*  int Spot;
-  storePermutation (Spot=getPermutationCount()+1,2,3);
-  storePermutation (Spot,1,1);
-  storePermutation (Spot,2,2);
-  storePermutation (Spot=getPermutationCount()+1,2,3);
-  storePermutation (Spot, 1,2);
-  storePermutation (Spot, 2,1);*/
-//  cerr << "The total number of permutations is " << getPermutationCount() << endl;
-
 }

@@ -5,9 +5,6 @@ all: simulated
 johnson.o: johnson.cc
 	$(GCC) -c johnson.cc
 
-LinkedList.o: LinkedList.cc Node.h
-	$(GCC) -c LinkedList.cc
-
 room.o: room.cc room.h
 	$(GCC) -c room.cc
 
@@ -20,7 +17,7 @@ author.o: author.cc author.h session.h
 paper.o: paper.cc paper.h
 	$(GCC) -c paper.cc
 
-sqlHelpers.o: sqlHelpers.cc sqlHelpers.h
+sqlHelpers.o: sqlHelpers.cc sqlHelpers.h config.h
 	$(GCC) -c sqlHelpers.cc `/usr/bin/mysql_config --cflags --libs`
 
 functions.o: functions.cc functions.h room.h author.h session.h paper.h sqlHelpers.h
@@ -29,8 +26,8 @@ functions.o: functions.cc functions.h room.h author.h session.h paper.h sqlHelpe
 simulated.o: simulated.cc sqlHelpers.h
 	$(GCC) -c simulated.cc `/usr/bin/mysql_config --cflags --libs`
 
-simulated: LinkedList.o room.o session.o author.o paper.o functions.o sqlHelpers.o simulated.o
-	$(GCC) LinkedList.o room.o session.o author.o paper.o functions.o sqlHelpers.o simulated.o -o simulated `/usr/bin/mysql_config --cflags --libs`
+simulated: room.o session.o author.o paper.o functions.o sqlHelpers.o simulated.o
+	$(GCC) room.o session.o author.o paper.o functions.o sqlHelpers.o simulated.o -o simulated `/usr/bin/mysql_config --cflags --libs`
 
 johnson: johnson.o
 	$(GCC) johnson.o -o johnson
