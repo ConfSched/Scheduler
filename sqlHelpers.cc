@@ -250,13 +250,11 @@ int getSessionID (int sessionNum) {
 int getAuthorConflict (int conflictNum, int authorNum) {
   int RV = 0;
   const char * query = "SELECT * from authors_sessions_constraints where author_id = ";
-  char* NumStr;
+  char* NumStr = new char[10];
   sprintf (NumStr, "%d", authorNum);
   char* fullQuery = new char[strlen(query)+strlen(NumStr)+1];
   strcpy (fullQuery, query);
   strcat (fullQuery, NumStr);
-  //cerr << "getting conflict " << conflictNum << " for author " << authorNum;
-  //cerr << " using query : " << fullQuery << endl;
   MYSQL *myCon=connect(myCon);
   if (myCon!=NULL) {
     if (mysql_query(myCon, fullQuery)) dispSqlError(myCon);
@@ -337,12 +335,13 @@ void storeConflicts (int permID, int conflictCount) {
 void clearTables() {
   MYSQL *myCon=connect(myCon);
   if (myCon!=NULL) {
-    const char * query = "DROP table conflicts";
+    const char * query = "TRUNCATE table conflicts";
     mysql_query (myCon, query);
-    query = "DROP table permutations";
+    query = "TRUNCATE table permutations";
     mysql_query (myCon, query);
-    query = "CREATE TABLE conflicts (permutation_id INT UNSIGNED NOT NULL PRIMARY KEY, num_conflicts int(10) UNSIGNED)";
-    mysql_query (myCon, query);
-    query = "CREATE TABLE permutations (permutation_id INT UNSIGNED NOT NULL, session INT UNSIGNED NOT NULL, author INT UNSIGNED NOT NULL, PRIMARY KEY (permutation_id,session,author))";
-    mysql_query (myCon, query);
+    // Don't drop the tables! Just truncate.
+    //query = "CREATE TABLE conflicts (permutation_id INT UNSIGNED NOT NULL PRIMARY KEY, num_conflicts int(10) UNSIGNED)";
+    //mysql_query (myCon, query);
+    //query = "CREATE TABLE permutations (permutation_id INT UNSIGNED NOT NULL, session INT UNSIGNED NOT NULL, author INT UNSIGNED NOT NULL, PRIMARY KEY (permutation_id,session,author))";
+    //mysql_query (myCon, query);
 }}

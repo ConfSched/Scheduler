@@ -131,24 +131,26 @@ int main() {
   print_sessions(sessions,num_sessions);
   //ASSERT: Sessions created
 
+
   num_authors = getRows ("authors");
   author authors[num_authors];
   fill_authors(authors,num_authors,sessions,num_sessions);
-
   print_authors(authors,num_authors);
   //ASSERT: Authors created
 
   num_papers = getPapers("papers_authors");
   paper papers[num_papers];
-  fill_papers(papers,num_papers,authors,num_authors);
-  
+  fill_papers(papers,num_papers,authors,num_authors);  
   print_papers(papers,num_papers);
   //ASSERT: Papers created
+
 
   for (int i = 1; i <= num_authors; ++i) {
     dir[i] = -1; permutations[i] = i;
     inv_perm[i] = i;
   }
+
+
   clearTables();
   permute(1,num_sessions,sessions,num_authors,authors);
   printf("\n");

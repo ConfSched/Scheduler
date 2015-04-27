@@ -173,7 +173,7 @@ void fill_authors(author authors[], int num_authors,session sessions[], int num_
     //cout << "Enter author id for author: ";
     //cin >> author_id;
     author_id = getAuthorID(i);
-    cout << author_id << endl;
+    //cout << author_id << endl;
     authors[i].setID(author_id);
     //cout << "Enter author name for author " << author_id << ": ";
     //cin >> author_name;
