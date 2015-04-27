@@ -26,28 +26,8 @@ void fill_rooms(room rooms[], int num_rooms) {
   //bool errorState=false;
   //connectDB (con, errorState);
   for (int i=0; i < num_rooms; i++) {
-    //cout << "Enter room id for the room: ";
-    //cin >> room_id;
     room_id = getRoomID(i);
     rooms[i].setID(room_id);
-    //cout << "Enter room size for room " << room_id << ": ";
-    //cin >> room_size; //TODO:needs to account for typing errors(it skips if non numerical)
-    //rooms[i].setRoomSize(room_size);
-    /*while(waiting_input) {
-      cout << "Can the room have equipment(Cables," 
-	   << " computers, projectors, etc)? y or n" << endl;
-      cin >> input;
-      if(input == 'y') {
-	rooms[i].setEquipment(true);
-	waiting_input = false;
-      } else if (input == 'n') {
-	rooms[i].setEquipment(false);
-	waiting_input = false;
-      } else {
-	waiting_input = true;
-      }
-    }
-    waiting_input = true*/
   }
 }
 
@@ -73,13 +53,8 @@ void fill_sessions(session sessions[], int num_sessions,room rooms[],int num_roo
   bool waiting_input = true;
   for (int i=0; i < num_sessions; i++) {
     while(waiting_input) {
-      //cout << "Enter session ID: ";
-      //cin >> session_id;
       session_id = getSessionID(i); /*SEG FAULT*/
       sessions[i].setID(session_id);
-      //cout << "Enter the room id of session " << session_id
-      //   << " is taking place in: ";
-      //cin >> room_id;
       room_id = getRoomID(i);
       for(int j=0; j < num_rooms; j++){
 	if(rooms[j].getRoomID() == room_id) {
@@ -92,35 +67,6 @@ void fill_sessions(session sessions[], int num_sessions,room rooms[],int num_roo
   }
 }
 
-//Pre: papers[] is the list of papers. sessions[] is the list of
-//     sessions. num_sessions is the number of sessions. num_papers is
-//     the number of papers
-//Post: the sessions now have the associated papers set to them
-
-/* DOES NOT NEED TO BE INCLUDED OR SO IT SEEMS */
-/*void set_session(paper papers[], session sessions[], int num_sessions, int num_papers) {
-  bool waiting_input = true; //The bool to determine if the user is correct
-  int paper_id; //The paper id of this session
-  for(int i = 0; i < num_sessions; i++) {
-    int paper_counter = 0;
-    while(waiting_input) {
-      cout << "Enter the paper ID's of Session " << sessions[i].getSessionID() 
-	   << ". Hit 0 when finished: ";
-      cin >> paper_id;
-      for(int j=0; j < num_papers; j++) {
-	if(papers[j].getID() == paper_id) {
-	  sessions[i].setSessionPapers(paper_id,paper_counter);
-	  paper_counter++;
-	} else if(paper_id == 0) {
-	  sessions[i].setSessionPapers(0,paper_counter);
-	  waiting_input = false;
-	}
-      }
-    }
-    waiting_input = true;
-  }
-  }*/
-
 //Pre: sessions[] and num_rooms are both defined 
 //Post: Prints the sessions with their information
 void print_sessions(session sessions[], int num_sessions) {
@@ -130,26 +76,6 @@ void print_sessions(session sessions[], int num_sessions) {
   }
 } 
 
-//Pre: sessions[] is defined as the sessions. num_sessions is defined
-//     as the number of sessions
-//Post: the sessions and their papers association have been printed
-//     out 
-
-/* DOES NOT NEED TO BE INCLUDED OR SO IT SEEMS */
-/*void print_session_papers(session sessions[], int num_sessions) {
-  int * sessionPapers;
-  for(int i = 0; i<num_sessions; i++) {
-    sessions[i].print();
-    sessionPapers = sessions[i].getSessionPapers();
-    for(int j=0; j<256; j++) {
-      if(sessionPapers[j] != 0) {
-	cout << " Paper: " << sessionPapers[j];
-      } else {
-	j = 256;
-      }
-    }
-  }
-  }*/
 
 // =========================================
 // Author Functions
@@ -170,21 +96,10 @@ void fill_authors(author authors[], int num_authors,session sessions[], int num_
   int session_id;
   for (int i=0; i < num_authors; i++) {
     int session_counter = 0;
-    //cout << "Enter author id for author: ";
-    //cin >> author_id;
     author_id = getAuthorID(i);
-    //cout << author_id << endl;
     authors[i].setID(author_id);
-    //cout << "Enter author name for author " << author_id << ": ";
-    //cin >> author_name;
-    //authors[i].setAuthorName(author_name);
-    //cout << "Enter author email for " << author_name << ": ";
-    //cin >> author_email;
-    //authors[i].setAuthorEmail(author_email);
     int count = 0;
     while(waiting_input) {
-      //cout << "Does the author have a conflict with a session, enter 0 if no, enter id of session if they do: ";
-      //cin >> session_id;
       session_id = getAuthorConflict(count,authors[i].getID());
       count++;
       for(int j=0; j < num_sessions; j++){
@@ -239,20 +154,10 @@ void fill_papers(paper papers[], int num_papers,author authors[], int num_author
 
   for (int i=0; i < num_papers; i++) {
     int author_counter = 0;
-    //cout << "Enter paper id for the paper: ";
-    //cin >> paper_id;
     paper_id = getPaperID(i);
     papers[i].setID(paper_id);
-    /*cout << "Enter the title of paper " << paper_id << ": ";
-    cin >> paper_title;
-    papers[i].setPaperTitle(paper_title);
-    cout << "Enter the session paper " << papers[i].getPaperTitle() << " belongs in: ";
-    cin >> session_id;
-    papers[i].setPaperSession(session_id);*/
     int count = 0;
     while(waiting_input) {
-      //cout << "Enter the ID of authors associated with this paper, 0 when finished: ";
-      //cin >> author_id;
       author_id = getAuthorPaper(count,papers[i].getID());
       count++;
 
