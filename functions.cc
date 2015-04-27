@@ -21,10 +21,6 @@ void fill_rooms(room rooms[], int num_rooms) {
   int room_size; //Number of people that can fit in a room.
   int room_id; //The id of the room.
   char input; //The user input on room equipment.
-  //MYSQL *con;
-  //con = mysql_init(NULL);
-  //bool errorState=false;
-  //connectDB (con, errorState);
   for (int i=0; i < num_rooms; i++) {
     room_id = getRoomID(i);
     rooms[i].setID(room_id);
@@ -53,7 +49,7 @@ void fill_sessions(session sessions[], int num_sessions,room rooms[],int num_roo
   bool waiting_input = true;
   for (int i=0; i < num_sessions; i++) {
     while(waiting_input) {
-      session_id = getSessionID(i); /*SEG FAULT*/
+      session_id = getSessionID(i);
       sessions[i].setID(session_id);
       room_id = getRoomID(i);
       for(int j=0; j < num_rooms; j++){
@@ -192,4 +188,3 @@ void print_papers(paper papers[], int num_papers) {
     }
   }
 }
-
