@@ -63,8 +63,12 @@ void printPerm(int num_sessions, session sessions[], int num_authors, author aut
       }
       cout << endl;
   }
+
   cout << "Conflicts for this permutation: " << conflicts << endl;
   cout << endl;
+  //TODO: Create threshold to store in the tables. if(conflicts < authors) or sessions.
+  //      add on web app, admin can say what permutations they want to see i.e. only show
+  //      me the permutations with 3 conflicts.
   storeConflicts (permutationNum, conflicts);
 }
 
